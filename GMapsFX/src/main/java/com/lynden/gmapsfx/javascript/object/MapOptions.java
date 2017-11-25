@@ -26,7 +26,6 @@ public class MapOptions extends JavascriptObject {
     
     protected LatLong center;
     protected MapTypeIdEnum mapType;
-//    protected boolean mapMarker;
     protected boolean mapMaker;
     protected boolean overviewMapControl;
     protected boolean panControl;
@@ -40,6 +39,10 @@ public class MapOptions extends JavascriptObject {
     protected boolean mapTypeControl;
     protected boolean scrollWheel;
     protected boolean fullscreenControl;
+    protected boolean clickableIcons;
+    protected boolean disableDefaultUI;
+    protected boolean disableDoubleClickZoom;
+    protected boolean keyboardShortcuts;
 		
     private String styleString;
     
@@ -47,6 +50,8 @@ public class MapOptions extends JavascriptObject {
     [{"featureType":"landscape","stylers":[{"saturation":-100},{"lightness":65},{"visibility":"on"}]},{"featureType":"poi","stylers":[{"saturation":-100},{"lightness":51},{"visibility":"simplified"}]},{"featureType":"road.highway","stylers":[{"saturation":-100},{"visibility":"simplified"}]},{"featureType":"road.arterial","stylers":[{"saturation":-100},{"lightness":30},{"visibility":"on"}]},{"featureType":"road.local","stylers":[{"saturation":-100},{"lightness":40},{"visibility":"on"}]},{"featureType":"transit","stylers":[{"saturation":-100},{"visibility":"simplified"}]},{"featureType":"administrative.province","stylers":[{"visibility":"off"}]},{"featureType":"water","elementType":"labels","stylers":[{"visibility":"on"},{"lightness":-25},{"saturation":-100}]},{"featureType":"water","elementType":"geometry","stylers":[{"hue":"#ffff00"},{"lightness":-25},{"saturation":-97}]}]
     */
     
+	private GestureHandlingType gestureHandling;
+	
 
     public MapOptions() {
         super(GMapObjectType.OBJECT);
@@ -164,6 +169,30 @@ public class MapOptions extends JavascriptObject {
         this.scrollWheel = scrollWheel;
         return this;
     }
+
+    public MapOptions clickableIcons(boolean clickableIcons) {
+        setProperty( "clickableIcons", clickableIcons );
+        this.clickableIcons = clickableIcons;
+        return this;
+    }
+
+    public MapOptions disableDefaultUI( boolean disableDefaultUI ) {
+        setProperty( "disableDefaultUI", disableDefaultUI );
+        this.disableDefaultUI = disableDefaultUI;
+        return this;
+    }
+
+    public MapOptions disableDoubleClickZoom( boolean disableDoubleClickZoom ) {
+        setProperty( "disableDoubleClickZoom", disableDoubleClickZoom );
+        this.disableDoubleClickZoom = disableDoubleClickZoom;
+        return this;
+    }
+
+    public MapOptions keyboardShortcuts( boolean keyboardShortcuts ) {
+        setProperty( "keyboardShortcuts", keyboardShortcuts );
+        this.keyboardShortcuts = keyboardShortcuts;
+        return this;
+    }
     
     /**
      * @param styleString the styleString to set. This parameter is assigned by 
@@ -176,4 +205,21 @@ public class MapOptions extends JavascriptObject {
         return this;
     }
     
+	/** Sets the gestureHandling option, used to control how Google Maps deals 
+	 * with touch screen devices. We offer no warranty as to whether this 
+	 * actually works given that any touch events are being passed through 
+	 * JavaFX WebView to the map, and vital information may be lost in 
+	 * transmission/translation.
+	 * <p>
+	 * See <a href="https://developers.google.com/maps/documentation/javascript/interaction">Google Maps API - Controlling Zoom and Pan</a>
+	 * 
+	 * @param gestureHandling
+	 * @return 
+	 */
+	public MapOptions gestureHandling(GestureHandlingType gestureHandling) {
+		setProperty("gestureHandling", gestureHandling.getOptionValue());
+		this.gestureHandling = gestureHandling;
+		return this;
+	}
+	
 }

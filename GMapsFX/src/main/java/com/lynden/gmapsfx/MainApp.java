@@ -39,6 +39,7 @@ import com.lynden.gmapsfx.shapes.Polyline;
 import com.lynden.gmapsfx.shapes.PolylineOptions;
 import com.lynden.gmapsfx.shapes.Rectangle;
 import com.lynden.gmapsfx.shapes.RectangleOptions;
+import com.lynden.gmapsfx.util.MarkerImageFactory;
 import java.util.Locale;
 import javafx.application.Application;
 import javafx.beans.value.ObservableValue;
@@ -87,7 +88,7 @@ public class MainApp extends Application implements MapComponentInitializedListe
     public void start(final Stage stage) throws Exception {
         System.out.println("Java version: " + System.getProperty("java.home"));
         mapComponent = new GoogleMapView(Locale.getDefault().getLanguage(), null);
-        mapComponent.addMapInializedListener(this);
+        mapComponent.addMapInitializedListener(this);
                 
         BorderPane bp = new BorderPane();
         ToolBar tb = new ToolBar();
@@ -165,6 +166,10 @@ public class MainApp extends Application implements MapComponentInitializedListe
                 .streetViewControl(false)
                 .zoomControl(false)
                 .mapType(MapTypeIdEnum.TERRAIN)
+                .clickableIcons(false)
+                .disableDefaultUI(true)
+                .disableDoubleClickZoom(true)
+                .keyboardShortcuts(false)
                 .styleString("[{'featureType':'landscape','stylers':[{'saturation':-100},{'lightness':65},{'visibility':'on'}]},{'featureType':'poi','stylers':[{'saturation':-100},{'lightness':51},{'visibility':'simplified'}]},{'featureType':'road.highway','stylers':[{'saturation':-100},{'visibility':'simplified'}]},{\"featureType\":\"road.arterial\",\"stylers\":[{\"saturation\":-100},{\"lightness\":30},{\"visibility\":\"on\"}]},{\"featureType\":\"road.local\",\"stylers\":[{\"saturation\":-100},{\"lightness\":40},{\"visibility\":\"on\"}]},{\"featureType\":\"transit\",\"stylers\":[{\"saturation\":-100},{\"visibility\":\"simplified\"}]},{\"featureType\":\"administrative.province\",\"stylers\":[{\"visibility\":\"off\"}]},{\"featureType\":\"water\",\"elementType\":\"labels\",\"stylers\":[{\"visibility\":\"on\"},{\"lightness\":-25},{\"saturation\":-100}]},{\"featureType\":\"water\",\"elementType\":\"geometry\",\"stylers\":[{\"hue\":\"#ffff00\"},{\"lightness\":-25},{\"saturation\":-97}]}]");
         
         //[{\"featureType\":\"landscape\",\"stylers\":[{\"saturation\":-100},{\"lightness\":65},{\"visibility\":\"on\"}]},{\"featureType\":\"poi\",\"stylers\":[{\"saturation\":-100},{\"lightness\":51},{\"visibility\":\"simplified\"}]},{\"featureType\":\"road.highway\",\"stylers\":[{\"saturation\":-100},{\"visibility\":\"simplified\"}]},{\"featureType\":\"road.arterial\",\"stylers\":[{\"saturation\":-100},{\"lightness\":30},{\"visibility\":\"on\"}]},{\"featureType\":\"road.local\",\"stylers\":[{\"saturation\":-100},{\"lightness\":40},{\"visibility\":\"on\"}]},{\"featureType\":\"transit\",\"stylers\":[{\"saturation\":-100},{\"visibility\":\"simplified\"}]},{\"featureType\":\"administrative.province\",\"stylers\":[{\"visibility\":\"off\"}]},{\"featureType\":\"water\",\"elementType\":\"labels\",\"stylers\":[{\"visibility\":\"on\"},{\"lightness\":-25},{\"saturation\":-100}]},{\"featureType\":\"water\",\"elementType\":\"geometry\",\"stylers\":[{\"hue\":\"#ffff00\"},{\"lightness\":-25},{\"saturation\":-97}]}]
