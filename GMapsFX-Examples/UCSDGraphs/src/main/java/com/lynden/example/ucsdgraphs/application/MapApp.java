@@ -79,8 +79,7 @@ public class MapApp extends Application
         mapComponent = new GoogleMapView();
 
         // TODO misspelled in original code - Need to report
-        mapComponent.addMapInializedListener(this);
-        // mapComponent.addMapInitializedListener(this);
+        mapComponent.addMapInitializedListener(this);
 
         // initialize tabs for data fetching and route controls
         Tab routeTab = new Tab("Routing");
